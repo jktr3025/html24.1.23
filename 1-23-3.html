@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="script/jquery-3.7.1.js"></script>
+    <style type="text/css">
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body{
+            background-color: deepskyblue;
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+            color: white;
+            overflow: hidden;
+        }
+        .menu{
+            width: 50px;
+            height: 50px;
+            position: absolute;
+            left: 20px;
+            top: 10px;
+        }
+        .menu_circle{
+            background-color: white;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            border-radius: 50%;
+            transform: scale(1);
+            z-index: 1000;
+            transition: all 0.3s;
+        }
+        .menu:hover .menu_circle{
+            transform: scale(1.3);
+        }
+        .menu.open .menu_circle{
+            transform: scale(84);
+
+        }
+        .menu_link{
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            z-index: 1002;
+        }
+        .menu_icon{
+            width: 20px;
+            height: 14px;
+            margin: auto;
+            position: absolute;
+            left: 0;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            /* border: 1px solid rebeccapurple; */
+        }
+        .menu_line{
+            background-color: #333;
+            width: 100%;
+            height: 2px;
+            position: absolute;
+            border-radius: 2px;
+            left: 0;
+            transition: all 0.3s;
+
+        }
+        
+        .menu_line1{
+        }
+        .menu_line2{
+            top: 0;
+            bottom: 0;
+            margin:auto;
+
+        }
+        .menu_line3{
+            bottom: 0;
+        }
+        .menu.open .menu_line1{
+            transform: translateY(7px) translateY(-50%) rotate(45deg);
+        }
+        .menu.open .menu_line2{
+            opacity: 0;
+        }
+        .menu.open .menu_line3{
+            transform: translateY(-7px) translateY(50%) rotate(-45deg);
+
+        }
+        .info{
+            text-align: center;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            -webkit-transform: translate(-50%, -50%);
+        }
+        .overlay_info{
+            text-align: center;
+            color: #123456;
+        }
+        .menu_overlay{
+            background-color: #fff;
+            color: #333;
+            width: 100%;
+            height: 100%;
+            position: fixed;
+            z-index: 1001;
+            opacity: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            visibility: hidden;
+            transition: all 0.3s;
+        }
+        .menu_overlay.open{
+            opacity: 1;
+            visibility: visible;
+        }
+    </style>
+    <script lang="java">
+        $(function(){
+            $(".menu").click(function(){
+                $(".menu_overlay").toggleClass("open");
+                $(".menu").toggleClass("open");
+            })//click
+        
+        
+
+        })//jquery
+    </script>
+</head>
+<body>
+    <h1 class="info">
+        click on the menu button
+    </h1><!-- info -->
+
+    <div class="menu">
+        <span class="menu_circle"></span>
+
+        <a href="#" class="menu_link">
+            <span class="menu_icon">
+                <span class="menu_line menu_line1"></span>
+                <span class="menu_line menu_line2"></span>
+                <span class="menu_line menu_line3"></span>
+            </span><!-- menu_icon -->
+        </a><!-- menu_link -->
+    </div><!-- menu -->
+
+    <div class="menu_overlay">
+        <h1 class="overlay_info">you can add your menu here. <br>
+            i used this gif instead.
+        </h1>
+        <img src="img/animal04.png" alt="animal04">
+    </div><!-- menu_overlay -->
+</body>
+</html>

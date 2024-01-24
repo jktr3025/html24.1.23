@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style type="text/css">
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body{
+            background-color: #000;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .face{
+            width: 125px;
+            height: 125px;
+            /* border: 1px gold solid; */
+            animation: face 6s infinite;
+        }
+        @keyframes face{
+            0%{transform: scale(0.15) rotate(180deg);}
+            100%{transform: scale(1) rotate(360deg);}
+
+        }
+        .circle{
+            width: 125px;
+            height: 125px;
+            border-radius: 50%;
+            position: absolute;
+            mix-blend-mode: screen;
+        }
+
+
+        .circle1{
+            animation: circle1 4s ease infinite alternate;
+            background-color: lightblue;
+
+        }
+        @keyframes circle1{
+            0%{transform: translate(0,0);}
+            100%{transform: translate(-35px,-50px);}
+        }
+        .circle2{
+            animation: circle2 4s ease infinite alternate;
+            background-color: lightcoral;
+
+        }
+        @keyframes circle2{
+            0%{transform: translate(0,0);}
+            100%{transform: translate(35px,50px);}
+        }
+        .circle3{
+            animation: circle3 4s ease infinite alternate;
+            background-color: lightcoral;
+
+        }
+        @keyframes circle3{
+            0%{transform: translate(0,0);}
+            100%{transform: translate(-60px,0);}
+        }
+        .circle4{
+            animation: circle4 4s ease infinite alternate;
+            background-color: lightblue;
+
+        }
+        @keyframes circle4{
+            0%{transform: translate(0,0);}
+            100%{transform: translate(60px,0);}
+        }
+        .circle5{
+            animation: circle5 4s ease infinite alternate;
+            background-color: lightblue;
+
+        }
+        @keyframes circle5{
+            0%{transform: translate(0,0);}
+            100%{transform: translate(-35px,50px);}
+        }
+        .circle6{
+            animation: circle6 4s ease infinite alternate;
+            background-color: lightcoral;
+
+        }
+        @keyframes circle6{
+            0%{transform: translate(0,0);}
+            100%{transform: translate(35px,-50px);}
+        }
+    </style>
+</head>
+<body>
+    <div class="face">
+        <div class="circle circle1"></div>
+        <div class="circle circle2"></div>
+        <div class="circle circle3"></div>
+        <div class="circle circle4"></div>
+        <div class="circle circle5"></div>
+        <div class="circle circle6"></div>
+    </div><!-- face -->
+</body>
+</html>

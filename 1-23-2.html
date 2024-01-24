@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="script/jquery-3.7.1.js"></script>
+    <script lang="java">
+        $(function(){
+            var currentPage = 1; //실제 보여지는 페이지 번호 
+            var maxPageNum = 3;  //실제 보여지는 최대 페이지 번호
+
+            //타이핑을 위한 변수
+            var typingBool1 = false;
+            var typingBool2 = false;
+
+            var typingInd1 = 0;
+            var typingInd2 = 0;
+
+            var typingTxt1 = $(".typing_txt1").text();
+            typingTxt1 = typingTxt1.split("");
+
+            var typingTxt2 = $(".typing_txt2").text();
+            typingTxt2 = typingTxt2.split("");
+
+            $("#wrap").on("mousewheel", function(e){
+                var wheel = e.originalEvent.wheelDelta;
+                console.log(wheel); //마우스 스크롤시  다운 -120 / 업 120
+                
+                var scroll = 0;
+                var currentPageHeight = $(document).innerHeight();
+                console.log(currentPageHeight);
+            
+                if(wheel > 0){
+                    //스크롤이 업이 될 때 
+                    //wheel == 120이라 해도 됨
+                    if(currentPage - 1  < 1){
+                        currentPage=1;
+                    }else{
+                        currentPage = currentPage - 1;
+                    }// 작은 if1
+                }else{
+                    //스크롤이 다운 될 때
+                    if(currentPage + 1 > maxPageNum){
+                        currentPage = maxPageNum;
+                    }else{
+                        currentPage = currentPage + 1;
+                    }// 작은 if2
+                }//if(wheel > 0)
+
+                console.log(currentPage);
+
+                scroll = (currentPage - 1) * currentPageHeight;
+                console.log(scroll);
+                $("#wrap").animate({scrollTop : scroll},500);
+
+                //스크롤이 진행될 때 2페이지인 경우
+                if(currentPage === 2){
+                    setTimeout(function(){
+                        if(typingBool1 == false){
+                            typingBool1 = true;
+                            time = setInterval(typing , 100)
+                        }//if
+                    },500) //setTimeout 
+
+                //스크롤이 진행될 때 3페이지인 경우
+                }else if(currentPage === 3){
+                    setTimeout(function(){
+                        if(typingBool2 == false){
+                            typingBool2 = true;
+                            time = setInterval(typing2 , 100)
+                        }//if
+                    },500) //setTimeout
+                }//if
+
+                function typing(){
+                    if(typingInd1 < typingTxt1.length){
+                        $(".typing1").append(typingTxt1[typingInd1]);
+                        typingInd1++;
+                    }else{
+                        clearInterval(time);
+                        typingBool1 = false;
+                    }//if
+                }//function typing
+
+                function typing2(){
+                    if(typingInd2 < typingTxt2.length){
+                        $(".typing2").append(typingTxt2[typingInd2]);
+                        typingInd2++;
+                    }else{
+                        clearInterval(time);
+                        typingBool2 = false;
+                    }//if
+                }//function typing2
+
+                $(".typing1").html("");
+                clearInterval(time);
+                typingBool1 = false;
+                typingInd1 = 0;
+                
+                $(".typing2").html("");
+                clearInterval(time);
+                typingBool2 = false;
+                typingInd2 = 0;
+
+            })//wrap").on
+            //파이어폭스는 명령어 따로 잡아줘야함 donmousescroll
+
+
+
+
+
+        })//jquery
+    </script>
+    <style type="text/css">
+        *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    ul,ol,li{
+        list-style: none;
+    }
+    a{
+        text-decoration: none;
+        color: inherit;
+    }
+    html, body{
+        width: 100%;
+        height: 100%;
+    }
+    #wrap{
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+    }
+    .page{
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    #page1{
+        background-color: lightpink;
+    }
+    #page2{
+        background-color: cornflowerblue;
+    }
+    #page3{
+        background-color: lemonchiffon;
+    }
+    #page1 p{
+        font-size: 50px;
+        font-weight: bold;
+        color: brown;
+    }
+    p.typing_txt1, p.typing_txt2{   
+        display: none;
+        font-size: 25px;
+        text-shadow: 1px 1px 5px black;        
+     }
+    .typing1, .typing2{
+        display: inline-block;
+        animation-name: cursor ;
+        animation-duration: 0.5s;
+        animation-iteration-count: infinite;
+    }
+
+     @keyframes cursor{
+        0%{border-right: 1px solid #fff;}
+        50%{border-right: 1px solid #000;}
+        100%{border-right: 1px solid #fff;}
+     }
+    </style>
+</head>
+<body>
+    <div id="wrap">
+        <div class="page" id="page1">
+            <p>hello world</p>
+        </div><!-- page1 -->
+        <div class="page" id="page2">
+            <p class="typing_txt1">안녕하세요. 반갑습니다.</p>
+            <p class="typing1"></p>
+        </div><!-- page2 -->
+        <div class="page" id="page3">
+            <p class="typing_txt2">오늘도 좋은 아침입니다. 화이팅</p>
+            <p class="typing2"></p>
+
+        </div><!-- page3 -->
+    </div><!-- wrap -->
+</body>
+</html>
